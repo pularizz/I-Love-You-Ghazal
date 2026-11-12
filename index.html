@@ -215,7 +215,7 @@ button{
 
 /* NO */
 .no-btn{
-    position:fixed;
+    position:relative;
     z-index:999999;
     min-width:115px;
     min-height:50px;
@@ -312,11 +312,12 @@ const ESCAPE_DISTANCE = 120;   // فاصله‌ای که دکمه شروع به 
 const PANIC_DISTANCE = 28;     // فاصله خیلی نزدیک
 const EDGE_MARGIN = 30;        // حداقل فاصله از لبه صفحه
 const EDGE_ZONE = 160;         // منطقه‌ای که دکمه از لبه‌ها دور می‌شود
-const MAX_SPEED = 10;          // حداکثر سرعت
-const ACCELERATION = .42;      // شتاب حرکت
+const MAX_SPEED = 14;          // حداقل سقف سرعت (بسته به سرعت موس بیشتر می‌شود)
+const ACCELERATION = .6;       // شتاب حرکت
 const PANIC_POWER = 2.7;       // قدرت فرار وقتی موس خیلی نزدیک است
 const FRICTION = .90;          // اصطکاک
-const ESCAPES_TO_EXPLODE = 4;  // تعداد فرار لازم برای انفجار
+const EXPLODE_DELAY = 2000;    // بعد از کلیک روی «نه»، چند میلی‌ثانیه تا انفجار
+const SPEED_OVER_MOUSE = 1.7;  // دکمه چند برابر سریع‌تر از موس فرار می‌کند
 
 
 /* ================= VARIABLES ================= */
@@ -337,10 +338,51 @@ let lastEscapeTime = 0;
 
 /* ================= MOUSE ================= */
 
+let mouseVX = 0;
+let mouseVY = 0;
+let lastMouseTime = 0;
+let clicked = false;
+let placeholder = null;
+
+function trackPointer(x, y){
+
+    const now = performance.now();
+
+    if(lastMouseTime && mouseX > -5000){
+
+        const dtMs = Math.max(now - lastMouseTime, 1);
+
+        /* سرعت موس بر حسب پیکسل در هر فریم */
+        const vx = (x - mouseX) / dtMs * 16.666;
+        const vy = (y - mouseY) / dtMs * 16.666;
+
+        mouseVX = mouseVX * .5 + vx * .5;
+        mouseVY = mouseVY * .5 + vy * .5;
+    }
+
+    mouseX = x;
+    mouseY = y;
+    lastMouseTime = now;
+}
+
 document.addEventListener("mousemove", function(e){
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+    trackPointer(e.clientX, e.clientY);
 });
+
+document.addEventListener("touchmove", function(e){
+    const t = e.touches[0];
+    if(t) trackPointer(t.clientX, t.clientY);
+}, { passive:true });
+
+document.addEventListener("touchstart", function(e){
+    const t = e.touches[0];
+    if(t){
+        mouseVX = 0;
+        mouseVY = 0;
+        lastMouseTime = 0;
+        trackPointer(t.clientX, t.clientY);
+    }
+}, { passive:true });
 
 
 /* ================= HELPERS ================= */
@@ -356,11 +398,24 @@ function clamp(value, min, max){
     return Math.max(min, Math.min(value, max));
 }
 
+function currentMouseSpeed(){
+    if(performance.now() - lastMouseTime > 90) return 0;
+    return Math.hypot(mouseVX, mouseVY);
+}
+
 function limitSpeed(){
+
+    const cap = clamp(
+        Math.max(MAX_SPEED, currentMouseSpeed() * SPEED_OVER_MOUSE),
+        MAX_SPEED,
+        70
+    );
+
     const speed = Math.hypot(velocityX, velocityY);
-    if(speed > MAX_SPEED){
-        velocityX = velocityX / speed * MAX_SPEED;
-        velocityY = velocityY / speed * MAX_SPEED;
+
+    if(speed > cap){
+        velocityX = velocityX / speed * cap;
+        velocityY = velocityY / speed * cap;
     }
 }
 
@@ -422,24 +477,12 @@ function avoidEdges(){
 
 function escapeFromMouse(distance){
 
-    if(!noButton || exploding) return;
-
-    const now = performance.now();
-
-    if(distance <= PANIC_DISTANCE && now - lastEscapeTime > 600){
-
-        lastEscapeTime = now;
-        escapeCount++;
-
-        if(escapeCount >= ESCAPES_TO_EXPLODE){
-            explodeNoButton();
-            return;
-        }
-    }
+    if(!noButton || exploding || clicked) return;
 
     const centerX = buttonX + noButton.offsetWidth / 2;
     const centerY = buttonY + noButton.offsetHeight / 2;
 
+    /* جهت دور شدن از موس */
     let dx = centerX - mouseX;
     let dy = centerY - mouseY;
 
@@ -454,26 +497,39 @@ function escapeFromMouse(distance){
         dy /= length;
     }
 
+    let escapeX = dx;
+    let escapeY = dy;
+
+    const mSpeed = currentMouseSpeed();
+
     /* کمی زاویه تصادفی */
-    const angle = (Math.random() - .5) * .20;
+    const angle = (Math.random() - .5) * .16;
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
 
-    const escapeX = dx * cos - dy * sin;
-    const escapeY = dx * sin + dy * cos;
+    const fx = escapeX * cos - escapeY * sin;
+    const fy = escapeX * sin + escapeY * cos;
 
-    velocityX += escapeX * ACCELERATION;
-    velocityY += escapeY * ACCELERATION;
+    /* هرچه موس سریع‌تر، دکمه سریع‌تر */
+    const near = (ESCAPE_DISTANCE - distance) / ESCAPE_DISTANCE;
 
-    if(distance < PANIC_DISTANCE){
-        velocityX += escapeX * PANIC_POWER;
-        velocityY += escapeY * PANIC_POWER;
+    const push = ACCELERATION * (1 + near * 1.5) + mSpeed * .55;
+
+    velocityX += fx * push;
+    velocityY += fy * push;
+
+    /* حداقل سرعت: همیشه سریع‌تر از موس */
+    const want = mSpeed * SPEED_OVER_MOUSE;
+    const along = velocityX * fx + velocityY * fy;
+
+    if(along < want){
+        velocityX += fx * (want - along);
+        velocityY += fy * (want - along);
     }
 
-    if(distance < ESCAPE_DISTANCE){
-        const force = (ESCAPE_DISTANCE - distance) / ESCAPE_DISTANCE;
-        velocityX += escapeX * force * .65;
-        velocityY += escapeY * force * .65;
+    if(distance < PANIC_DISTANCE){
+        velocityX += fx * PANIC_POWER;
+        velocityY += fy * PANIC_POWER;
     }
 
     limitSpeed();
@@ -738,34 +794,96 @@ function nextStep(){
 
     escapeCount = 0;
     exploding = false;
+    clicked = false;
     velocityX = 0;
     velocityY = 0;
     lastTime = 0;
     lastEscapeTime = 0;
 
-    const rect = noButton.getBoundingClientRect();
+    /*
+       «نه» اول کنار «آره» می‌ماند (داخل جریان صفحه).
+       بعد از تمام شدن انیمیشن ورود، آزاد می‌شود.
+    */
+    function releaseButton(){
 
-    buttonX = rect.left;
-    buttonY = rect.top;
+        if(!noButton || exploding || clicked) return;
 
-    keepInside();
-    applyPosition();
+        const rect = noButton.getBoundingClientRect();
 
-    running = true;
-    requestAnimationFrame(gameLoop);
+        /* جای خالی، تا «آره» سر جایش بماند */
+        placeholder = document.createElement("span");
+        placeholder.style.display = "inline-block";
+        placeholder.style.width = rect.width + "px";
+        placeholder.style.height = rect.height + "px";
+        placeholder.style.visibility = "hidden";
+        noButton.parentNode.insertBefore(placeholder, noButton);
 
-    noButton.addEventListener("click", function(e){
+        /*
+           مهم: دکمه را به body منتقل می‌کنیم.
+           کارت backdrop-filter دارد و داخلش position:fixed
+           نسبت به خود کارت حساب می‌شود، نه صفحه؛ همین باعث
+           می‌شد جهت فرار اشتباه باشد.
+        */
+        document.body.appendChild(noButton);
+
+        noButton.style.position = "fixed";
+
+        buttonX = rect.left;
+        buttonY = rect.top;
+
+        applyPosition();
+
+        /* «آره» نرم و آرام به وسط می‌آید */
+        const ph = placeholder;
+
+        requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+                ph.style.transition = "width .55s ease, margin .55s ease";
+                ph.style.width = "0px";
+                ph.style.marginLeft = "-18px";   /* هم‌اندازه gap */
+            });
+        });
+
+        setTimeout(function(){ ph.remove(); }, 700);
+
+        lastTime = 0;
+        running = true;
+        requestAnimationFrame(gameLoop);
+    }
+
+    setTimeout(releaseButton, 650);
+
+    function onNoClick(e){
 
         e.preventDefault();
         e.stopPropagation();
 
-        if(exploding) return;
+        if(exploding || clicked) return;
+
+        clicked = true;
+        running = false;
 
         noButton.innerHTML = `
             نه نه نه
             <span class="emoji">😈</span>
         `;
-    });
+
+        /* لرزش تا لحظه انفجار */
+        noButton.animate([
+            { transform:"translateX(0) rotate(0deg)" },
+            { transform:"translateX(-4px) rotate(-3deg)" },
+            { transform:"translateX(4px) rotate(3deg)" },
+            { transform:"translateX(0) rotate(0deg)" }
+        ],{
+            duration:260,
+            iterations:Infinity
+        });
+
+        /* بعد از ۲ ثانیه منفجر می‌شود */
+        setTimeout(explodeNoButton, EXPLODE_DELAY);
+    }
+
+    noButton.addEventListener("click", onNoClick);
 }
 
 
@@ -775,7 +893,11 @@ function sayYes(){
 
     running = false;
     exploding = true;
-    noButton = null;
+
+    if(noButton){
+        noButton.remove();
+        noButton = null;
+    }
 
     document.getElementById("content").innerHTML = `
 
