@@ -1,2792 +1,872 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Eli ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghazal 💜</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="shortcut icon" type="image/png" href="icon.png">
 
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
-/* =====================================================
-   FONT
-===================================================== */
-
-@import url(
-    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap'
-);
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ================= THEME COLORS ================= */
+:root{
+    --p-300:#d8b4fe;
+    --p-400:#c084fc;
+    --p-500:#a855f7;
+    --p-600:#7c3aed;
+    --p-700:#5b21b6;
+    --text-soft:#cdb8e6;
+    --glow-rgb:168,85,247;
+    --glow2-rgb:124,58,237;
+    --pink-rgb:236,72,153;
 }
 
+*{margin:0;padding:0;box-sizing:border-box;}
 
-html,
-body{
-
-    width:100%;
-    height:100%;
-
-    overflow:hidden;
-}
-
-
-/* =====================================================
-   BODY
-===================================================== */
+html,body{width:100%;height:100%;overflow:hidden;}
 
 body{
-
     position:fixed;
-
     inset:0;
-
     width:100vw;
     height:100vh;
-
     overflow:hidden;
-
-    font-family:
-        "Vazirmatn",
-        sans-serif;
-
+    font-family:"Vazirmatn",sans-serif;
     color:#fff;
-
     background:
-
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(0,190,255,.20),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 85%,
-            rgba(50,80,255,.18),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            #020712,
-            #061a34,
-            #01050c
-        );
+        radial-gradient(circle at 15% 15%, rgba(var(--glow-rgb),.24), transparent 32%),
+        radial-gradient(circle at 85% 85%, rgba(var(--glow2-rgb),.22), transparent 36%),
+        radial-gradient(circle at 80% 15%, rgba(var(--pink-rgb),.10), transparent 30%),
+        linear-gradient(135deg,#0a0414,#1a0838,#07020f);
 }
 
+/* ================= BACKGROUND GLOWS ================= */
+.glow{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(120px);pointer-events:none;}
+.glow1{left:-250px;top:-250px;background:rgba(var(--glow-rgb),.16);}
+.glow2{right:-250px;bottom:-250px;background:rgba(var(--glow2-rgb),.16);}
 
-/* =====================================================
-   BACKGROUND GLOWS
-===================================================== */
-
-.glow{
-
-    position:fixed;
-
-    width:500px;
-    height:500px;
-
-    border-radius:50%;
-
-    filter:blur(120px);
-
-    pointer-events:none;
-}
-
-
-.glow1{
-
-    left:-250px;
-    top:-250px;
-
-    background:
-        rgba(0,180,255,.10);
-}
-
-
-.glow2{
-
-    right:-250px;
-    bottom:-250px;
-
-    background:
-        rgba(40,80,255,.10);
-}
-
-
-/* =====================================================
-   STARS
-===================================================== */
-
-#stars{
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-}
-
-
+/* ================= STARS ================= */
+#stars{position:fixed;inset:0;pointer-events:none;}
 .star{
-
     position:absolute;
-
-    width:2px;
-    height:2px;
-
+    width:2px;height:2px;
     border-radius:50%;
-
-    background:#9beaff;
-
-    box-shadow:
-        0 0 8px #00c8ff;
-
-    animation:
-        starPulse
-        2s
-        ease-in-out
-        infinite
-        alternate;
+    background:#e9d5ff;
+    box-shadow:0 0 8px var(--p-500);
+    animation:starPulse 2s ease-in-out infinite alternate;
 }
-
-
 @keyframes starPulse{
-
-    from{
-
-        opacity:.15;
-
-        transform:
-            scale(.7);
-    }
-
-    to{
-
-        opacity:.9;
-
-        transform:
-            scale(1.4);
-    }
-
+    from{opacity:.15;transform:scale(.7);}
+    to{opacity:.9;transform:scale(1.4);}
 }
 
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-#particles{
-
-    position:fixed;
-
-    inset:0;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:5;
-}
-
-
+/* ================= PARTICLES ================= */
+#particles{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:5;}
 .particle{
-
     position:absolute;
-
     bottom:-20px;
-
     border-radius:50%;
-
-    background:#55ddff;
-
-    box-shadow:
-
-        0 0 10px #00c8ff,
-
-        0 0 20px
-        rgba(0,190,255,.5);
-
-    animation:
-        particleUp
-        linear
-        forwards;
+    background:var(--p-400);
+    box-shadow:0 0 10px var(--p-500), 0 0 20px rgba(var(--glow-rgb),.5);
+    animation:particleUp linear forwards;
 }
-
-
 @keyframes particleUp{
-
-    0%{
-
-        transform:
-            translateY(0)
-            scale(.4);
-
-        opacity:0;
-    }
-
-    15%{
-
-        opacity:.8;
-    }
-
-    100%{
-
-        transform:
-            translateY(-120vh)
-            scale(1.2);
-
-        opacity:0;
-    }
-
+    0%{transform:translateY(0) scale(.4);opacity:0;}
+    15%{opacity:.8;}
+    100%{transform:translateY(-120vh) scale(1.2);opacity:0;}
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
-
+/* ================= MAIN ================= */
 .wrapper{
-
     position:fixed;
-
     inset:0;
-
-    width:100vw;
-    height:100vh;
-
+    width:100vw;height:100vh;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
     z-index:10;
 }
 
-
 .card{
-
-    width:min(
-        650px,
-        94vw
-    );
-
+    position:relative;
+    width:min(650px,94vw);
     min-height:450px;
-
-    padding:
-        55px 30px;
-
+    padding:55px 30px;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     text-align:center;
-
     border-radius:36px;
-
-    background:
-        rgba(5,20,40,.72);
-
-    border:
-        1px solid
-        rgba(100,220,255,.22);
-
-    backdrop-filter:
-        blur(28px);
-
-    -webkit-backdrop-filter:
-        blur(28px);
-
+    background:linear-gradient(160deg, rgba(34,12,66,.72), rgba(14,5,30,.78));
+    border:1px solid rgba(192,132,252,.28);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
     box-shadow:
-
-        0 35px 100px
-        rgba(0,0,0,.55),
-
-        inset 0 0 50px
-        rgba(0,150,255,.04),
-
-        0 0 70px
-        rgba(0,130,255,.08);
+        0 35px 100px rgba(0,0,0,.6),
+        inset 0 0 50px rgba(var(--glow-rgb),.06),
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 0 80px rgba(var(--glow-rgb),.16);
 }
 
-
-.content{
-
-    width:100%;
+/* subtle glowing border */
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    border-radius:37px;
+    padding:1px;
+    background:linear-gradient(135deg, rgba(216,180,254,.55), transparent 35%, transparent 65%, rgba(var(--pink-rgb),.35));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events:none;
 }
 
+.content{width:100%;}
 
-.step{
-
-    animation:
-        stepIn
-        .55s
-        ease;
-}
-
-
+.step{animation:stepIn .55s ease;}
 @keyframes stepIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(20px)
-            scale(.94);
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
+    from{opacity:0;transform:translateY(20px) scale(.94);}
+    to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-
-/* =====================================================
-   TEXT
-===================================================== */
-
+/* ================= TEXT ================= */
 .name{
-
-    color:#68ddff;
-
+    color:var(--p-300);
     font-size:21px;
-
     font-weight:700;
-
     margin-bottom:15px;
-
-    text-shadow:
-        0 0 20px
-        rgba(0,190,255,.7);
+    text-shadow:0 0 20px rgba(var(--glow-rgb),.8);
 }
-
 
 .question{
-
-    font-size:
-        clamp(
-            28px,
-            5vw,
-            44px
-        );
-
+    font-size:clamp(28px,5vw,44px);
     font-weight:800;
-
     line-height:1.7;
-
     margin-bottom:18px;
-
     color:#fff;
 }
 
-
 .gradient-text{
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #67ddff,
-            #ffffff
-        );
-
-    background-size:
-        200% auto;
-
+    background:linear-gradient(90deg,#ffffff,#c084fc,#f0abfc,#ffffff);
+    background-size:200% auto;
     -webkit-background-clip:text;
-
     background-clip:text;
-
-    -webkit-text-fill-color:
-        transparent;
-
-    animation:
-        shine
-        4s
-        linear
-        infinite;
+    -webkit-text-fill-color:transparent;
+    animation:shine 4s linear infinite;
 }
+@keyframes shine{to{background-position:200% center;}}
 
-
-@keyframes shine{
-
-    to{
-
-        background-position:
-            200% center;
-    }
-
-}
-
-
-/* =====================================================
-   EMOJI FIX
-===================================================== */
-
+/* ================= EMOJI FIX ================= */
 .emoji{
-
     display:inline-block;
-
-    font-family:
-
-        "Segoe UI Emoji",
-        "Apple Color Emoji",
-        "Noto Color Emoji",
-        sans-serif;
-
+    font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
     color:initial !important;
-
     background:none !important;
-
     background-image:none !important;
-
-    -webkit-text-fill-color:
-        initial !important;
-
-    -webkit-background-clip:
-        initial !important;
-
-    background-clip:
-        initial !important;
+    -webkit-text-fill-color:initial !important;
+    -webkit-background-clip:initial !important;
+    background-clip:initial !important;
 }
-
 
 .description{
-
-    color:#a8c9da;
-
+    color:var(--text-soft);
     font-size:15px;
-
     line-height:2;
-
     margin-bottom:35px;
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
+/* ================= BUTTONS ================= */
 .buttons{
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:18px;
-
     min-height:65px;
 }
 
-
 button{
-
     font-family:inherit;
-
     border:none;
-
     outline:none;
-
     font-size:16px;
-
     font-weight:700;
-
-    padding:
-        15px 30px;
-
+    padding:15px 30px;
     border-radius:17px;
 }
 
-
-/* =====================================================
-   YES
-===================================================== */
-
+/* YES */
 .yes-btn{
-
     position:relative;
-
     z-index:10;
-
     cursor:pointer;
-
     color:#fff;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #00baff,
-            #0066ff
-        );
-
-    box-shadow:
-
-        0 10px 35px
-        rgba(0,130,255,.4);
-
-    transition:
-
-        transform .25s ease,
-
-        box-shadow .25s ease;
+    background:linear-gradient(135deg,#c084fc,#a855f7 45%,#7c3aed);
+    box-shadow:0 10px 35px rgba(var(--glow-rgb),.45), inset 0 1px 0 rgba(255,255,255,.25);
+    transition:transform .25s ease, box-shadow .25s ease;
 }
-
-
 .yes-btn:hover{
-
-    transform:
-
-        translateY(-4px)
-        scale(1.06);
-
-    box-shadow:
-
-        0 18px 45px
-        rgba(0,160,255,.55);
+    transform:translateY(-4px) scale(1.06);
+    box-shadow:0 18px 45px rgba(var(--glow-rgb),.65), inset 0 1px 0 rgba(255,255,255,.3);
 }
 
-
-/* =====================================================
-   NO BUTTON
-===================================================== */
-
+/* NO */
 .no-btn{
-
     position:fixed;
-
     z-index:999999;
-
     min-width:115px;
-
     min-height:50px;
-
-    padding:
-        14px 28px;
-
-    color:#d8e9ef;
-
-    background:
-        rgba(255,255,255,.065);
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    box-shadow:
-
-        0 8px 25px
-        rgba(0,0,0,.30);
-
+    padding:14px 28px;
+    color:#e6d9f5;
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(216,180,254,.2);
+    box-shadow:0 8px 25px rgba(0,0,0,.30);
     cursor:pointer;
-
     user-select:none;
-
     white-space:nowrap;
-
-    will-change:
-        left,
-        top,
-        transform;
-
+    will-change:left,top,transform;
     touch-action:none;
 }
 
-
-/* =====================================================
-   FINAL
-===================================================== */
-
+/* ================= FINAL ================= */
 .final-heart{
-
     font-size:85px;
-
     margin-bottom:15px;
-
-    filter:
-
-        drop-shadow(
-            0 0 25px
-            rgba(0,190,255,.8)
-        );
-
-    animation:
-
-        heartbeat
-        1.25s
-        infinite;
+    filter:drop-shadow(0 0 25px rgba(var(--glow-rgb),.9));
+    animation:heartbeat 1.25s infinite;
 }
-
-
 @keyframes heartbeat{
-
-    0%,
-    100%{
-
-        transform:
-            scale(1);
-    }
-
-    15%{
-
-        transform:
-            scale(1.18);
-    }
-
-    30%{
-
-        transform:
-            scale(1);
-    }
-
-    45%{
-
-        transform:
-            scale(1.12);
-    }
-
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.18);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.12);}
 }
-
 
 .final-title{
-
-    font-size:
-        clamp(
-            28px,
-            5vw,
-            43px
-        );
-
+    font-size:clamp(28px,5vw,43px);
     font-weight:800;
-
     margin-bottom:15px;
 }
 
+.final-text{color:var(--text-soft);line-height:2;}
 
-.final-text{
-
-    color:#a8c9da;
-
-    line-height:2;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
+/* ================= MOBILE ================= */
 @media(max-width:600px){
-
-    .card{
-
-        min-height:430px;
-
-        padding:
-            45px 20px;
-    }
-
-
-    button{
-
-        font-size:14px;
-
-        padding:
-            13px 22px;
-    }
-
+    .card{min-height:430px;padding:45px 20px;}
+    button{font-size:14px;padding:13px 22px;}
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- BACKGROUND -->
-
 <div class="glow glow1"></div>
-
 <div class="glow glow2"></div>
-
 <div id="stars"></div>
-
 <div id="particles"></div>
 
-
-<!-- MAIN -->
-
 <div class="wrapper">
-
     <div class="card">
-
-        <div
-            class="content"
-            id="content"
-        >
+        <div class="content" id="content">
 
             <!-- STEP 1 -->
-
             <div class="step">
-
                 <div class="name">
-
-                    Eli
-
-                    <span class="emoji">
-                        ❤️
-                    </span>
-
+                    Ghazal
+                    <span class="emoji">💜</span>
                 </div>
-
 
                 <div class="question">
-
                     <span class="gradient-text">
-
                         دیگه وقتشه<br>
-
                         سوالمو ازت بپرسم...
-
                     </span>
-
                 </div>
-
 
                 <div class="description">
-
                     یه سوال کوچولوئه...
-
                     <br>
-
-                    ولی جوابش برای من
-                    خیلی مهمه :)
-
+                    ولی جوابش برای من خیلی مهمه :)
                 </div>
-
 
                 <div class="buttons">
-
-                    <button
-                        class="yes-btn"
-                        onclick="nextStep()"
-                    >
-
+                    <button class="yes-btn" onclick="nextStep()">
                         ادامه بده
-
-                        <span class="emoji">
-                            💙
-                        </span>
-
+                        <span class="emoji">💜</span>
                     </button>
-
                 </div>
-
             </div>
 
         </div>
-
     </div>
-
 </div>
-
 
 <script>
 
-/* =====================================================
-   SETTINGS
-===================================================== */
+/* ================= SETTINGS ================= */
+
+const ESCAPE_DISTANCE = 120;   // فاصله‌ای که دکمه شروع به فرار می‌کند
+const PANIC_DISTANCE = 28;     // فاصله خیلی نزدیک
+const EDGE_MARGIN = 30;        // حداقل فاصله از لبه صفحه
+const EDGE_ZONE = 160;         // منطقه‌ای که دکمه از لبه‌ها دور می‌شود
+const MAX_SPEED = 10;          // حداکثر سرعت
+const ACCELERATION = .42;      // شتاب حرکت
+const PANIC_POWER = 2.7;       // قدرت فرار وقتی موس خیلی نزدیک است
+const FRICTION = .90;          // اصطکاک
+const ESCAPES_TO_EXPLODE = 4;  // تعداد فرار لازم برای انفجار
 
 
-/*
-    فاصله‌ای که دکمه
-    شروع به فرار می‌کند.
-*/
-
-const ESCAPE_DISTANCE = 120;
-
-
-/*
-    فاصله خیلی نزدیک.
-*/
-
-const PANIC_DISTANCE = 28;
-
-
-/*
-    فاصله از لبه صفحه.
-
-    دکمه هیچ‌وقت کمتر از این
-    فاصله با لبه نمی‌شود.
-*/
-
-const EDGE_MARGIN = 30;
-
-
-/*
-    منطقه امن قبل از لبه.
-
-    دکمه از اینجا به بعد
-    شروع به تغییر مسیر می‌کند.
-*/
-
-const EDGE_ZONE = 160;
-
-
-/*
-    حداکثر سرعت.
-
-    عمداً محدود شده تا
-    حرکت طبیعی باشد.
-*/
-
-const MAX_SPEED = 10;
-
-
-/*
-    شتاب حرکت.
-*/
-
-const ACCELERATION = .42;
-
-
-/*
-    قدرت فرار وقتی موس
-    خیلی نزدیک می‌شود.
-*/
-
-const PANIC_POWER = 2.7;
-
-
-/*
-    اصطکاک.
-
-    باعث نرم شدن حرکت می‌شود.
-*/
-
-const FRICTION = .90;
-
-
-/*
-    تعداد فرار لازم برای انفجار.
-*/
-
-const ESCAPES_TO_EXPLODE = 4;
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* ================= VARIABLES ================= */
 
 let noButton = null;
-
 let running = false;
-
 let exploding = false;
-
 let escapeCount = 0;
-
 let mouseX = -10000;
-
 let mouseY = -10000;
-
 let buttonX = 0;
-
 let buttonY = 0;
-
 let velocityX = 0;
-
 let velocityY = 0;
-
 let lastTime = 0;
-
 let lastEscapeTime = 0;
 
 
-/* =====================================================
-   MOUSE
-===================================================== */
+/* ================= MOUSE ================= */
 
-document.addEventListener(
-    "mousemove",
-    function(e){
-
-        mouseX =
-            e.clientX;
-
-        mouseY =
-            e.clientY;
-
-    }
-);
+document.addEventListener("mousemove", function(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
 
 
-/* =====================================================
-   VIEWPORT
-===================================================== */
+/* ================= HELPERS ================= */
 
 function getViewport(){
-
     return {
-
-        width:
-            document.documentElement
-                .clientWidth,
-
-        height:
-            document.documentElement
-                .clientHeight
-
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight
     };
-
 }
 
-
-/* =====================================================
-   CLAMP
-===================================================== */
-
-function clamp(
-    value,
-    min,
-    max
-){
-
-    return Math.max(
-        min,
-        Math.min(
-            value,
-            max
-        )
-    );
-
+function clamp(value, min, max){
+    return Math.max(min, Math.min(value, max));
 }
-
-
-/* =====================================================
-   LIMIT SPEED
-===================================================== */
 
 function limitSpeed(){
-
-    const speed =
-        Math.hypot(
-            velocityX,
-            velocityY
-        );
-
-
-    if(
-        speed > MAX_SPEED
-    ){
-
-        velocityX =
-            velocityX /
-            speed *
-            MAX_SPEED;
-
-
-        velocityY =
-            velocityY /
-            speed *
-            MAX_SPEED;
-
+    const speed = Math.hypot(velocityX, velocityY);
+    if(speed > MAX_SPEED){
+        velocityX = velocityX / speed * MAX_SPEED;
+        velocityY = velocityY / speed * MAX_SPEED;
     }
-
 }
 
 
-/* =====================================================
-   KEEP INSIDE
-===================================================== */
+/* ================= KEEP INSIDE ================= */
 
 function keepInside(){
 
-    if(!noButton)
-        return;
+    if(!noButton) return;
 
+    const view = getViewport();
+    const width = noButton.offsetWidth;
+    const height = noButton.offsetHeight;
 
-    const view =
-        getViewport();
+    const minX = EDGE_MARGIN;
+    const minY = EDGE_MARGIN;
+    const maxX = Math.max(minX, view.width - width - EDGE_MARGIN);
+    const maxY = Math.max(minY, view.height - height - EDGE_MARGIN);
 
+    if(buttonX < minX){ buttonX = minX; velocityX = Math.abs(velocityX); }
+    if(buttonX > maxX){ buttonX = maxX; velocityX = -Math.abs(velocityX); }
+    if(buttonY < minY){ buttonY = minY; velocityY = Math.abs(velocityY); }
+    if(buttonY > maxY){ buttonY = maxY; velocityY = -Math.abs(velocityY); }
 
-    const width =
-        noButton.offsetWidth;
-
-
-    const height =
-        noButton.offsetHeight;
-
-
-    const minX =
-        EDGE_MARGIN;
-
-
-    const minY =
-        EDGE_MARGIN;
-
-
-    const maxX =
-        Math.max(
-            minX,
-            view.width -
-            width -
-            EDGE_MARGIN
-        );
-
-
-    const maxY =
-        Math.max(
-            minY,
-            view.height -
-            height -
-            EDGE_MARGIN
-        );
-
-
-    /*
-       اگر به مرز رسید،
-       به داخل برگرد.
-    */
-
-    if(buttonX < minX){
-
-        buttonX =
-            minX;
-
-        velocityX =
-            Math.abs(
-                velocityX
-            );
-
-    }
-
-
-    if(buttonX > maxX){
-
-        buttonX =
-            maxX;
-
-        velocityX =
-            -Math.abs(
-                velocityX
-            );
-
-    }
-
-
-    if(buttonY < minY){
-
-        buttonY =
-            minY;
-
-        velocityY =
-            Math.abs(
-                velocityY
-            );
-
-    }
-
-
-    if(buttonY > maxY){
-
-        buttonY =
-            maxY;
-
-        velocityY =
-            -Math.abs(
-                velocityY
-            );
-
-    }
-
-
-    /*
-       قفل نهایی.
-
-       باعث می‌شود حتی با
-       resize هم بیرون نرود.
-    */
-
-    buttonX =
-        clamp(
-            buttonX,
-            minX,
-            maxX
-        );
-
-
-    buttonY =
-        clamp(
-            buttonY,
-            minY,
-            maxY
-        );
-
+    buttonX = clamp(buttonX, minX, maxX);
+    buttonY = clamp(buttonY, minY, maxY);
 }
 
 
-/* =====================================================
-   EDGE AVOIDANCE
-===================================================== */
+/* ================= EDGE AVOIDANCE ================= */
 
 function avoidEdges(){
 
-    if(!noButton)
-        return;
+    if(!noButton) return;
 
+    const view = getViewport();
+    const width = noButton.offsetWidth;
+    const height = noButton.offsetHeight;
 
-    const view =
-        getViewport();
+    const left = buttonX;
+    const right = view.width - buttonX - width;
+    const top = buttonY;
+    const bottom = view.height - buttonY - height;
 
+    if(left < EDGE_ZONE){ velocityX += (1 - left / EDGE_ZONE) * .85; }
+    if(right < EDGE_ZONE){ velocityX -= (1 - right / EDGE_ZONE) * .85; }
+    if(top < EDGE_ZONE){ velocityY += (1 - top / EDGE_ZONE) * .85; }
+    if(bottom < EDGE_ZONE){ velocityY -= (1 - bottom / EDGE_ZONE) * .85; }
 
-    const width =
-        noButton.offsetWidth;
-
-
-    const height =
-        noButton.offsetHeight;
-
-
-    const left =
-        buttonX;
-
-
-    const right =
-        view.width -
-        buttonX -
-        width;
-
-
-    const top =
-        buttonY;
-
-
-    const bottom =
-        view.height -
-        buttonY -
-        height;
-
-
-    /*
-       نزدیک لبه چپ
-    */
-
-    if(
-        left <
-        EDGE_ZONE
-    ){
-
-        const force =
-            (
-                1 -
-                left /
-                EDGE_ZONE
-            );
-
-
-        velocityX +=
-            force *
-            .85;
-
-    }
-
-
-    /*
-       نزدیک لبه راست
-    */
-
-    if(
-        right <
-        EDGE_ZONE
-    ){
-
-        const force =
-            (
-                1 -
-                right /
-                EDGE_ZONE
-            );
-
-
-        velocityX -=
-            force *
-            .85;
-
-    }
-
-
-    /*
-       نزدیک بالا
-    */
-
-    if(
-        top <
-        EDGE_ZONE
-    ){
-
-        const force =
-            (
-                1 -
-                top /
-                EDGE_ZONE
-            );
-
-
-        velocityY +=
-            force *
-            .85;
-
-    }
-
-
-    /*
-       نزدیک پایین
-    */
-
-    if(
-        bottom <
-        EDGE_ZONE
-    ){
-
-        const force =
-            (
-                1 -
-                bottom /
-                EDGE_ZONE
-            );
-
-
-        velocityY -=
-            force *
-            .85;
-
-    }
-
-
-    /*
-       جلوگیری از گیر کردن
-       در گوشه‌ها.
-    */
-
-    if(
-        left < EDGE_ZONE &&
-        top < EDGE_ZONE
-    ){
-
-        velocityX += .55;
-        velocityY += .55;
-
-    }
-
-
-    if(
-        right < EDGE_ZONE &&
-        top < EDGE_ZONE
-    ){
-
-        velocityX -= .55;
-        velocityY += .55;
-
-    }
-
-
-    if(
-        left < EDGE_ZONE &&
-        bottom < EDGE_ZONE
-    ){
-
-        velocityX += .55;
-        velocityY -= .55;
-
-    }
-
-
-    if(
-        right < EDGE_ZONE &&
-        bottom < EDGE_ZONE
-    ){
-
-        velocityX -= .55;
-        velocityY -= .55;
-
-    }
-
+    /* جلوگیری از گیر کردن در گوشه‌ها */
+    if(left < EDGE_ZONE && top < EDGE_ZONE){ velocityX += .55; velocityY += .55; }
+    if(right < EDGE_ZONE && top < EDGE_ZONE){ velocityX -= .55; velocityY += .55; }
+    if(left < EDGE_ZONE && bottom < EDGE_ZONE){ velocityX += .55; velocityY -= .55; }
+    if(right < EDGE_ZONE && bottom < EDGE_ZONE){ velocityX -= .55; velocityY -= .55; }
 }
 
 
-/* =====================================================
-   ESCAPE
-===================================================== */
+/* ================= ESCAPE ================= */
 
-function escapeFromMouse(
-    distance
-){
+function escapeFromMouse(distance){
 
-    if(
-        !noButton ||
-        exploding
-    ){
+    if(!noButton || exploding) return;
 
-        return;
+    const now = performance.now();
 
-    }
+    if(distance <= PANIC_DISTANCE && now - lastEscapeTime > 600){
 
-
-    /*
-       شمارش فرار.
-
-       فقط وقتی موس خیلی نزدیک
-       وارد محدوده می‌شود.
-    */
-
-    const now =
-        performance.now();
-
-
-    if(
-        distance <= PANIC_DISTANCE &&
-        now - lastEscapeTime > 600
-    ){
-
-        lastEscapeTime =
-            now;
-
-
+        lastEscapeTime = now;
         escapeCount++;
 
-
-        /*
-           فرار چهارم:
-           انفجار 💥
-        */
-
-        if(
-            escapeCount >=
-            ESCAPES_TO_EXPLODE
-        ){
-
+        if(escapeCount >= ESCAPES_TO_EXPLODE){
             explodeNoButton();
-
             return;
-
         }
-
     }
 
+    const centerX = buttonX + noButton.offsetWidth / 2;
+    const centerY = buttonY + noButton.offsetHeight / 2;
 
-    /*
-       مرکز دکمه
-    */
+    let dx = centerX - mouseX;
+    let dy = centerY - mouseY;
 
-    const centerX =
-        buttonX +
-        noButton.offsetWidth /
-        2;
+    const length = Math.hypot(dx, dy);
 
-
-    const centerY =
-        buttonY +
-        noButton.offsetHeight /
-        2;
-
-
-    /*
-       جهت دور شدن از موس
-    */
-
-    let dx =
-        centerX -
-        mouseX;
-
-
-    let dy =
-        centerY -
-        mouseY;
-
-
-    const length =
-        Math.hypot(
-            dx,
-            dy
-        );
-
-
-    if(
-        length < .001
-    ){
-
-        const angle =
-            Math.random() *
-            Math.PI *
-            2;
-
-
-        dx =
-            Math.cos(angle);
-
-
-        dy =
-            Math.sin(angle);
-
-    }
-    else{
-
-        dx /=
-            length;
-
-        dy /=
-            length;
-
+    if(length < .001){
+        const a = Math.random() * Math.PI * 2;
+        dx = Math.cos(a);
+        dy = Math.sin(a);
+    }else{
+        dx /= length;
+        dy /= length;
     }
 
+    /* کمی زاویه تصادفی */
+    const angle = (Math.random() - .5) * .20;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
 
-    /*
-       کمی زاویه تصادفی.
+    const escapeX = dx * cos - dy * sin;
+    const escapeY = dx * sin + dy * cos;
 
-       باعث می‌شود حرکت
-       خشک و مستقیم نباشد.
-    */
+    velocityX += escapeX * ACCELERATION;
+    velocityY += escapeY * ACCELERATION;
 
-    const angle =
-        (
-            Math.random() -
-            .5
-        ) *
-        .20;
-
-
-    const cos =
-        Math.cos(angle);
-
-
-    const sin =
-        Math.sin(angle);
-
-
-    const escapeX =
-        dx * cos -
-        dy * sin;
-
-
-    const escapeY =
-        dx * sin +
-        dy * cos;
-
-
-    /*
-       شتاب عادی
-    */
-
-    velocityX +=
-        escapeX *
-        ACCELERATION;
-
-
-    velocityY +=
-        escapeY *
-        ACCELERATION;
-
-
-    /*
-       وقتی خیلی نزدیک است،
-       یک boost کوچک.
-    */
-
-    if(
-        distance <
-        PANIC_DISTANCE
-    ){
-
-        velocityX +=
-            escapeX *
-            PANIC_POWER;
-
-
-        velocityY +=
-            escapeY *
-            PANIC_POWER;
-
+    if(distance < PANIC_DISTANCE){
+        velocityX += escapeX * PANIC_POWER;
+        velocityY += escapeY * PANIC_POWER;
     }
 
-
-    /*
-       اگر نزدیک است ولی هنوز
-       خیلی نزدیک نشده، به صورت
-       نرم از موس فاصله بگیرد.
-    */
-
-    if(
-        distance <
-        ESCAPE_DISTANCE
-    ){
-
-        const force =
-            (
-                ESCAPE_DISTANCE -
-                distance
-            ) /
-            ESCAPE_DISTANCE;
-
-
-        velocityX +=
-            escapeX *
-            force *
-            .65;
-
-
-        velocityY +=
-            escapeY *
-            force *
-            .65;
-
+    if(distance < ESCAPE_DISTANCE){
+        const force = (ESCAPE_DISTANCE - distance) / ESCAPE_DISTANCE;
+        velocityX += escapeX * force * .65;
+        velocityY += escapeY * force * .65;
     }
-
 
     limitSpeed();
-
 }
 
 
-/* =====================================================
-   APPLY POSITION
-===================================================== */
+/* ================= APPLY POSITION ================= */
 
 function applyPosition(){
-
-    if(!noButton)
-        return;
-
-
-    noButton.style.left =
-        buttonX + "px";
-
-
-    noButton.style.top =
-        buttonY + "px";
-
+    if(!noButton) return;
+    noButton.style.left = buttonX + "px";
+    noButton.style.top = buttonY + "px";
 }
 
 
-/* =====================================================
-   MAIN LOOP
-===================================================== */
+/* ================= MAIN LOOP ================= */
 
 function gameLoop(timestamp){
 
-    if(
-        !running ||
-        !noButton ||
-        exploding
-    ){
+    if(!running || !noButton || exploding) return;
 
-        return;
+    if(lastTime === 0) lastTime = timestamp;
 
+    let dt = (timestamp - lastTime) / 16.666;
+    lastTime = timestamp;
+    dt = Math.min(dt, 1.5);
+
+    const rect = noButton.getBoundingClientRect();
+
+    const closestX = Math.max(rect.left, Math.min(mouseX, rect.right));
+    const closestY = Math.max(rect.top, Math.min(mouseY, rect.bottom));
+
+    const distance = Math.hypot(mouseX - closestX, mouseY - closestY);
+
+    if(distance < ESCAPE_DISTANCE){
+        escapeFromMouse(distance);
     }
-
-
-    if(
-        lastTime === 0
-    ){
-
-        lastTime =
-            timestamp;
-
-    }
-
-
-    let dt =
-        (
-            timestamp -
-            lastTime
-        ) /
-        16.666;
-
-
-    lastTime =
-        timestamp;
-
-
-    /*
-       جلوگیری از پرش
-    */
-
-    dt =
-        Math.min(
-            dt,
-            1.5
-        );
-
-
-    /*
-       مستطیل واقعی دکمه
-    */
-
-    const rect =
-        noButton.getBoundingClientRect();
-
-
-    /*
-       نزدیک‌ترین نقطه دکمه
-       نسبت به موس
-    */
-
-    const closestX =
-        Math.max(
-            rect.left,
-            Math.min(
-                mouseX,
-                rect.right
-            )
-        );
-
-
-    const closestY =
-        Math.max(
-            rect.top,
-            Math.min(
-                mouseY,
-                rect.bottom
-            )
-        );
-
-
-    const distance =
-        Math.hypot(
-
-            mouseX -
-            closestX,
-
-            mouseY -
-            closestY
-
-        );
-
-
-    /*
-       اگر موس نزدیک شد
-    */
-
-    if(
-        distance <
-        ESCAPE_DISTANCE
-    ){
-
-        escapeFromMouse(
-            distance
-        );
-
-    }
-
-
-    /*
-       همیشه از لبه‌ها دور شو.
-    */
 
     avoidEdges();
 
+    buttonX += velocityX * dt;
+    buttonY += velocityY * dt;
 
-    /*
-       حرکت واقعی.
+    const friction = Math.pow(FRICTION, dt);
+    velocityX *= friction;
+    velocityY *= friction;
 
-       هیچ Teleport وجود ندارد.
-    */
+    /* اگر سرعت خیلی کم شد و موس هنوز نزدیک است */
+    const speed = Math.hypot(velocityX, velocityY);
 
-    buttonX +=
-        velocityX *
-        dt;
+    if(speed < .25 && distance < ESCAPE_DISTANCE){
 
+        const centerX = buttonX + noButton.offsetWidth / 2;
+        const centerY = buttonY + noButton.offsetHeight / 2;
 
-    buttonY +=
-        velocityY *
-        dt;
+        let dx = centerX - mouseX;
+        let dy = centerY - mouseY;
+        const d = Math.hypot(dx, dy);
 
-
-    /*
-       اصطکاک.
-    */
-
-    const friction =
-        Math.pow(
-            FRICTION,
-            dt
-        );
-
-
-    velocityX *=
-        friction;
-
-
-    velocityY *=
-        friction;
-
-
-    /*
-       اگر سرعت خیلی کم شد
-       و موس هنوز نزدیک است،
-       یک حرکت کوچک ایجاد کن
-       تا گیر نکند.
-    */
-
-    const speed =
-        Math.hypot(
-            velocityX,
-            velocityY
-        );
-
-
-    if(
-        speed < .25 &&
-        distance < ESCAPE_DISTANCE
-    ){
-
-        const centerX =
-            buttonX +
-            noButton.offsetWidth /
-            2;
-
-
-        const centerY =
-            buttonY +
-            noButton.offsetHeight /
-            2;
-
-
-        let dx =
-            centerX -
-            mouseX;
-
-
-        let dy =
-            centerY -
-            mouseY;
-
-
-        const d =
-            Math.hypot(
-                dx,
-                dy
-            );
-
-
-        if(
-            d > .001
-        ){
-
+        if(d > .001){
             dx /= d;
             dy /= d;
-
         }
 
-
-        velocityX +=
-            dx *
-            .75;
-
-
-        velocityY +=
-            dy *
-            .75;
-
+        velocityX += dx * .75;
+        velocityY += dy * .75;
     }
 
-
-    /*
-       محدود کردن سرعت
-    */
-
     limitSpeed();
-
-
-    /*
-       داخل صفحه
-    */
-
     keepInside();
-
-
-    /*
-       نمایش
-    */
-
     applyPosition();
 
-
-    /*
-       ادامه
-    */
-
-    requestAnimationFrame(
-        gameLoop
-    );
-
+    requestAnimationFrame(gameLoop);
 }
 
 
-/* =====================================================
-   EXPLOSION
-===================================================== */
+/* ================= EXPLOSION ================= */
 
 function explodeNoButton(){
 
-    if(
-        !noButton ||
-        exploding
-    ){
-
-        return;
-
-    }
-
+    if(!noButton || exploding) return;
 
     exploding = true;
-
     running = false;
 
-
-    /*
-       موقعیت مرکز دکمه
-    */
-
-    const rect =
-        noButton.getBoundingClientRect();
-
-
-    const centerX =
-        rect.left +
-        rect.width /
-        2;
-
-
-    const centerY =
-        rect.top +
-        rect.height /
-        2;
-
-
-    /*
-       غیرفعال کردن کلیک
-    */
-
-    noButton.style.pointerEvents =
-        "none";
-
-
-    /*
-       انیمیشن انفجار خود دکمه
-    */
-
-    noButton.animate(
-
-        [
-
-            {
-                transform:
-                    "scale(1) rotate(0deg)",
-
-                opacity:1
-            },
-
-            {
-                transform:
-                    "scale(1.18) rotate(-5deg)",
-
-                opacity:1
-            },
-
-            {
-                transform:
-                    "scale(1.28) rotate(5deg)",
-
-                opacity:.95
-            },
-
-            {
-                transform:
-                    "scale(.75) rotate(-10deg)",
-
-                opacity:.65
-            },
-
-            {
-                transform:
-                    "scale(1.7) rotate(15deg)",
-
-                opacity:.25
-            },
-
-            {
-                transform:
-                    "scale(0)",
-
-                opacity:0
-            }
-
-        ],
-
-        {
-
-            duration:700,
-
-            easing:
-                "cubic-bezier(.2,.8,.2,1)",
-
-            fill:"forwards"
-
-        }
-
-    );
-
-
-    /*
-       Flash انفجار
-    */
-
-    const flash =
-        document.createElement(
-            "div"
-        );
-
-
-    flash.style.position =
-        "fixed";
-
-
-    flash.style.left =
-        centerX + "px";
-
-
-    flash.style.top =
-        centerY + "px";
-
-
-    flash.style.width =
-        "20px";
-
-
-    flash.style.height =
-        "20px";
-
-
-    flash.style.borderRadius =
-        "50%";
-
-
-    flash.style.background =
-        "#ffffff";
-
-
-    flash.style.boxShadow =
-
-        "0 0 20px #ffffff," +
-
-        "0 0 50px #00c8ff," +
-
-        "0 0 100px #0088ff";
-
-
-    flash.style.pointerEvents =
-        "none";
-
-
-    flash.style.zIndex =
-        "1000001";
-
-
-    document.body.appendChild(
-        flash
-    );
-
-
-    flash.animate(
-
-        [
-
-            {
-                transform:
-                    "translate(-50%,-50%) scale(.2)",
-
-                opacity:1
-            },
-
-            {
-                transform:
-                    "translate(-50%,-50%) scale(7)",
-
-                opacity:0
-            }
-
-        ],
-
-        {
-
-            duration:600,
-
-            easing:"ease-out",
-
-            fill:"forwards"
-
-        }
-
-    );
-
-
-    setTimeout(
-        () => flash.remove(),
-        700
-    );
-
-
-    /*
-       ساخت ذرات انفجار
-    */
-
-    for(
-        let i = 0;
-        i < 70;
-        i++
-    ){
-
-        createExplosionParticle(
-            centerX,
-            centerY
-        );
-
+    const rect = noButton.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    noButton.style.pointerEvents = "none";
+
+    noButton.animate([
+        { transform:"scale(1) rotate(0deg)", opacity:1 },
+        { transform:"scale(1.18) rotate(-5deg)", opacity:1 },
+        { transform:"scale(1.28) rotate(5deg)", opacity:.95 },
+        { transform:"scale(.75) rotate(-10deg)", opacity:.65 },
+        { transform:"scale(1.7) rotate(15deg)", opacity:.25 },
+        { transform:"scale(0)", opacity:0 }
+    ],{
+        duration:700,
+        easing:"cubic-bezier(.2,.8,.2,1)",
+        fill:"forwards"
+    });
+
+    /* Flash */
+    const flash = document.createElement("div");
+    flash.style.position = "fixed";
+    flash.style.left = centerX + "px";
+    flash.style.top = centerY + "px";
+    flash.style.width = "20px";
+    flash.style.height = "20px";
+    flash.style.borderRadius = "50%";
+    flash.style.background = "#ffffff";
+    flash.style.boxShadow = "0 0 20px #ffffff, 0 0 50px #c084fc, 0 0 100px #7c3aed";
+    flash.style.pointerEvents = "none";
+    flash.style.zIndex = "1000001";
+    document.body.appendChild(flash);
+
+    flash.animate([
+        { transform:"translate(-50%,-50%) scale(.2)", opacity:1 },
+        { transform:"translate(-50%,-50%) scale(7)", opacity:0 }
+    ],{
+        duration:600,
+        easing:"ease-out",
+        fill:"forwards"
+    });
+
+    setTimeout(() => flash.remove(), 700);
+
+    for(let i = 0; i < 70; i++){
+        createExplosionParticle(centerX, centerY);
     }
 
-
-    /*
-       لرزش کل کارت
-    */
-
-    const card =
-        document.querySelector(
-            ".card"
-        );
-
+    /* لرزش کارت */
+    const card = document.querySelector(".card");
 
     if(card){
-
-        card.animate(
-
-            [
-
-                {
-                    transform:
-                        "translateX(0)"
-                },
-
-                {
-                    transform:
-                        "translateX(-7px)"
-                },
-
-                {
-                    transform:
-                        "translateX(7px)"
-                },
-
-                {
-                    transform:
-                        "translateX(-5px)"
-                },
-
-                {
-                    transform:
-                        "translateX(5px)"
-                },
-
-                {
-                    transform:
-                        "translateX(0)"
-                }
-
-            ],
-
-            {
-
-                duration:450,
-
-                easing:"ease-out"
-
-            }
-
-        );
-
+        card.animate([
+            { transform:"translateX(0)" },
+            { transform:"translateX(-7px)" },
+            { transform:"translateX(7px)" },
+            { transform:"translateX(-5px)" },
+            { transform:"translateX(5px)" },
+            { transform:"translateX(0)" }
+        ],{
+            duration:450,
+            easing:"ease-out"
+        });
     }
 
-
-    /*
-       پیام بعد از انفجار
-    */
-
-    setTimeout(
-        function(){
-
-            if(noButton){
-
-                noButton.remove();
-
-                noButton =
-                    null;
-
-            }
-
-
-            const description =
-                document.querySelector(
-                    ".description"
-                );
-
-
-            if(description){
-
-                description.innerHTML = `
-
-                    دکمه «نه» منفجر شد! 💥
-
-                    <br>
-
-                    فکر کنم دیگه راه فراری نداری 😂❤️
-
-                `;
-
-            }
-
-        },
-        720
-    );
-
-}
-
-
-/* =====================================================
-   EXPLOSION PARTICLE
-===================================================== */
-
-function createExplosionParticle(
-    x,
-    y
-){
-
-    const particle =
-        document.createElement(
-            "div"
-        );
-
-
-    particle.style.position =
-        "fixed";
-
-
-    particle.style.left =
-        x + "px";
-
-
-    particle.style.top =
-        y + "px";
-
-
-    const size =
-        3 +
-        Math.random() *
-        8;
-
-
-    particle.style.width =
-        size + "px";
-
-
-    particle.style.height =
-        size + "px";
-
-
-    particle.style.borderRadius =
-        "50%";
-
-
-    particle.style.background =
-        Math.random() > .3
-        ? "#55ddff"
-        : "#ffffff";
-
-
-    particle.style.boxShadow =
-        "0 0 12px #00c8ff";
-
-
-    particle.style.pointerEvents =
-        "none";
-
-
-    particle.style.zIndex =
-        "1000000";
-
-
-    document.body.appendChild(
-        particle
-    );
-
-
-    /*
-       جهت تصادفی
-    */
-
-    const angle =
-        Math.random() *
-        Math.PI *
-        2;
-
-
-    const distance =
-        80 +
-        Math.random() *
-        220;
-
-
-    const endX =
-        Math.cos(angle) *
-        distance;
-
-
-    const endY =
-        Math.sin(angle) *
-        distance;
-
-
-    particle.animate(
-
-        [
-
-            {
-
-                transform:
-                    "translate(-50%,-50%) scale(1)",
-
-                opacity:1
-
-            },
-
-            {
-
-                transform:
-                    `
-                    translate(
-                        calc(-50% + ${endX}px),
-                        calc(-50% + ${endY}px)
-                    )
-                    scale(0)
-                    `,
-
-                opacity:0
-
-            }
-
-        ],
-
-        {
-
-            duration:
-                650 +
-                Math.random() *
-                650,
-
-            easing:
-                "cubic-bezier(.15,.75,.2,1)",
-
-            fill:"forwards"
-
+    setTimeout(function(){
+
+        if(noButton){
+            noButton.remove();
+            noButton = null;
         }
 
-    );
+        const description = document.querySelector(".description");
 
+        if(description){
+            description.innerHTML = `
+                دکمه «نه» منفجر شد! 💥
+                <br>
+                فکر کنم دیگه راه فراری نداری 😂💜
+            `;
+        }
 
-    setTimeout(
-        () => particle.remove(),
-        1500
-    );
-
+    }, 720);
 }
 
 
-/* =====================================================
-   NEXT STEP
-===================================================== */
+/* ================= EXPLOSION PARTICLE ================= */
+
+function createExplosionParticle(x, y){
+
+    const particle = document.createElement("div");
+
+    particle.style.position = "fixed";
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+
+    const size = 3 + Math.random() * 8;
+
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.borderRadius = "50%";
+    particle.style.background = Math.random() > .3 ? "#c084fc" : "#ffffff";
+    particle.style.boxShadow = "0 0 12px #a855f7";
+    particle.style.pointerEvents = "none";
+    particle.style.zIndex = "1000000";
+
+    document.body.appendChild(particle);
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 80 + Math.random() * 220;
+    const endX = Math.cos(angle) * distance;
+    const endY = Math.sin(angle) * distance;
+
+    particle.animate([
+        {
+            transform:"translate(-50%,-50%) scale(1)",
+            opacity:1
+        },
+        {
+            transform:`translate(calc(-50% + ${endX}px), calc(-50% + ${endY}px)) scale(0)`,
+            opacity:0
+        }
+    ],{
+        duration:650 + Math.random() * 650,
+        easing:"cubic-bezier(.15,.75,.2,1)",
+        fill:"forwards"
+    });
+
+    setTimeout(() => particle.remove(), 1500);
+}
+
+
+/* ================= NEXT STEP ================= */
 
 function nextStep(){
 
-    document.getElementById(
-        "content"
-    ).innerHTML = `
+    document.getElementById("content").innerHTML = `
 
         <div class="step">
 
             <div class="name">
-
-                Eli...
-
-                <span class="emoji">
-                    💙
-                </span>
-
+                Ghazal...
+                <span class="emoji">💜</span>
             </div>
-
 
             <div class="question">
-
-                <span class="gradient-text">
-
-                    من ازت خوشم میاد...
-
-                </span>
-
+                <span class="gradient-text">من ازت خوشم میاد...</span>
                 <br>
-
-                <span class="gradient-text">
-
-                    تو چی؟
-
-                </span>
-
-                <span class="emoji">
-                    😳
-                </span>
-
+                <span class="gradient-text">تو چی؟</span>
+                <span class="emoji">😳</span>
             </div>
-
 
             <div class="description">
-
                 یه جواب ساده می‌خوام...
-
                 <br>
-
                 آره یا نه؟
-
             </div>
-
 
             <div class="buttons">
 
-                <button
-                    class="yes-btn"
-                    onclick="sayYes()"
-                >
-
+                <button class="yes-btn" onclick="sayYes()">
                     آره
-
-                    <span class="emoji">
-                        ❤️
-                    </span>
-
+                    <span class="emoji">💜</span>
                 </button>
 
-
-                <button
-                    class="no-btn"
-                    id="noButton"
-                >
-
+                <button class="no-btn" id="noButton">
                     نه
-
-                    <span class="emoji">
-                        😈
-                    </span>
-
+                    <span class="emoji">😈</span>
                 </button>
 
             </div>
 
         </div>
-
     `;
 
-
-    /*
-       گرفتن دکمه
-    */
-
-    noButton =
-        document.getElementById(
-            "noButton"
-        );
-
-
-    /*
-       ریست
-    */
+    noButton = document.getElementById("noButton");
 
     escapeCount = 0;
-
     exploding = false;
-
     velocityX = 0;
-
     velocityY = 0;
-
     lastTime = 0;
-
     lastEscapeTime = 0;
 
+    const rect = noButton.getBoundingClientRect();
 
-    /*
-       موقعیت اولیه
-    */
-
-    const rect =
-        noButton.getBoundingClientRect();
-
-
-    buttonX =
-        rect.left;
-
-
-    buttonY =
-        rect.top;
-
-
-    /*
-       داخل صفحه
-    */
+    buttonX = rect.left;
+    buttonY = rect.top;
 
     keepInside();
-
     applyPosition();
 
-
-    /*
-       شروع سیستم حرکت
-    */
-
     running = true;
+    requestAnimationFrame(gameLoop);
 
+    noButton.addEventListener("click", function(e){
 
-    requestAnimationFrame(
-        gameLoop
-    );
+        e.preventDefault();
+        e.stopPropagation();
 
+        if(exploding) return;
 
-    /*
-       اگر به هر شکلی کلیک شد
-    */
-
-    noButton.addEventListener(
-        "click",
-        function(e){
-
-            e.preventDefault();
-
-            e.stopPropagation();
-
-
-            if(
-                exploding
-            )
-                return;
-
-
-            noButton.innerHTML = `
-
-                نه نه نه
-
-                <span class="emoji">
-                    😈
-                </span>
-
-            `;
-
-        }
-    );
-
+        noButton.innerHTML = `
+            نه نه نه
+            <span class="emoji">😈</span>
+        `;
+    });
 }
 
 
-/* =====================================================
-   YES
-===================================================== */
+/* ================= YES ================= */
 
 function sayYes(){
 
     running = false;
-
     exploding = true;
-
     noButton = null;
 
-
-    document.getElementById(
-        "content"
-    ).innerHTML = `
+    document.getElementById("content").innerHTML = `
 
         <div class="step">
 
-            <div class="final-heart">
-
-                💙
-
-            </div>
-
+            <div class="final-heart">💜</div>
 
             <div class="final-title">
-
-                می‌دونستم!
-                😭❤️
-
+                می‌دونستم! 😭💜
             </div>
 
-
             <div class="final-text">
-
                 پس بالاخره گفتی آره 😌
-
                 <br><br>
-
-                فکر کنم از اینجا به بعد
-                داستانمون قشنگ‌تر بشه...
-
+                فکر کنم از اینجا به بعد داستانمون قشنگ‌تر بشه...
                 <br><br>
-
-                Eli
-                <span class="emoji">
-                    ❤️
-                </span>
-
+                Ghazal
+                <span class="emoji">💜</span>
             </div>
 
         </div>
-
     `;
 
-
-    /*
-       جشن ذرات
-    */
-
-    for(
-        let i = 0;
-        i < 50;
-        i++
-    ){
-
-        setTimeout(
-            createParticle,
-            i * 35
-        );
-
+    for(let i = 0; i < 50; i++){
+        setTimeout(createParticle, i * 35);
     }
-
 }
 
 
-/* =====================================================
-   FLOATING PARTICLE
-===================================================== */
+/* ================= FLOATING PARTICLE ================= */
 
 function createParticle(){
 
-    const container =
-        document.getElementById(
-            "particles"
-        );
+    const container = document.getElementById("particles");
+    if(!container) return;
 
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "%";
 
-    if(!container)
-        return;
+    const size = 3 + Math.random() * 7;
 
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.animationDuration = (5 + Math.random() * 7) + "s";
 
-    const particle =
-        document.createElement(
-            "div"
-        );
+    container.appendChild(particle);
 
-
-    particle.className =
-        "particle";
-
-
-    particle.style.left =
-        Math.random() *
-        100 +
-        "%";
-
-
-    const size =
-        3 +
-        Math.random() *
-        7;
-
-
-    particle.style.width =
-        size + "px";
-
-
-    particle.style.height =
-        size + "px";
-
-
-    particle.style.animationDuration =
-
-        (
-            5 +
-            Math.random() *
-            7
-        ) +
-
-        "s";
-
-
-    container.appendChild(
-        particle
-    );
-
-
-    setTimeout(
-        function(){
-
-            particle.remove();
-
-        },
-        14000
-    );
-
+    setTimeout(function(){ particle.remove(); }, 14000);
 }
 
 
-/* =====================================================
-   STARS
-===================================================== */
+/* ================= STARS ================= */
 
 function createStars(){
 
-    const container =
-        document.getElementById(
-            "stars"
-        );
+    const container = document.getElementById("stars");
 
+    for(let i = 0; i < 80; i++){
 
-    for(
-        let i = 0;
-        i < 80;
-        i++
-    ){
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.animationDelay = Math.random() * 3 + "s";
 
-        const star =
-            document.createElement(
-                "div"
-            );
-
-
-        star.className =
-            "star";
-
-
-        star.style.left =
-            Math.random() *
-            100 +
-            "%";
-
-
-        star.style.top =
-            Math.random() *
-            100 +
-            "%";
-
-
-        star.style.animationDelay =
-
-            Math.random() *
-            3 +
-
-            "s";
-
-
-        container.appendChild(
-            star
-        );
-
+        container.appendChild(star);
     }
-
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+/* ================= START ================= */
 
 createStars();
 
-
-for(
-    let i = 0;
-    i < 10;
-    i++
-){
-
-    setTimeout(
-        createParticle,
-        i * 300
-    );
-
+for(let i = 0; i < 10; i++){
+    setTimeout(createParticle, i * 300);
 }
 
-
-setInterval(
-    createParticle,
-    1200
-);
+setInterval(createParticle, 1200);
 
 
-/* =====================================================
-   RESIZE
-===================================================== */
+/* ================= RESIZE ================= */
 
-window.addEventListener(
-    "resize",
-    function(){
+window.addEventListener("resize", function(){
 
-        if(
-            !noButton ||
-            exploding
-        )
-            return;
+    if(!noButton || exploding) return;
 
-
-        keepInside();
-
-        applyPosition();
-
-    }
-);
+    keepInside();
+    applyPosition();
+});
 
 </script>
 
